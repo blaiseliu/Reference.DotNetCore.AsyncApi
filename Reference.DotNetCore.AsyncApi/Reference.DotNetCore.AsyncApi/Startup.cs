@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Reference.DotNetCore.AsyncApi.Context;
+using Reference.DotNetCore.AsyncApi.Repositories;
 
 namespace Reference.DotNetCore.AsyncApi
 {
@@ -21,6 +22,8 @@ namespace Reference.DotNetCore.AsyncApi
             services.AddControllers();
             var connectionString = Configuration["ConnectionStrings:NotesDbConnectionString"];
             services.AddDbContext<NotesDbContext>(x => x.UseSqlServer(connectionString));
+
+            services.AddScoped<INoteRepository, NoteRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
