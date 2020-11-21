@@ -8,6 +8,7 @@ namespace Reference.DotNetCore.AsyncApi.Entities
     public class Note
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         [Required]
         [MaxLength(200)]

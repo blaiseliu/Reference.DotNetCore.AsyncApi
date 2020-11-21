@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Reference.DotNetCore.AsyncApi.Entities;
+using Reference.DotNetCore.AsyncApi.SeedData;
 
 namespace Reference.DotNetCore.AsyncApi.Context
 {
@@ -10,6 +11,11 @@ namespace Reference.DotNetCore.AsyncApi.Context
         public NotesDbContext(DbContextOptions<NotesDbContext> options):base(options)
         {
             
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Note>().HasData(new NotesData().Seed());
         }
     }
 }
