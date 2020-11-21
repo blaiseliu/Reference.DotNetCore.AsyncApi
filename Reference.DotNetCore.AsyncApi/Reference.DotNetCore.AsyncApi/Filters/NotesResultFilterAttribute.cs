@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -7,7 +8,7 @@ using Reference.DotNetCore.AsyncApi.Models.Note;
 
 namespace Reference.DotNetCore.AsyncApi.Filters
 {
-    public class NoteResultFilterAttribute:ResultFilterAttribute
+    public class NotesResultFilterAttribute:ResultFilterAttribute
     {
         public override async Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)
         {
@@ -21,7 +22,7 @@ namespace Reference.DotNetCore.AsyncApi.Filters
             }
 
             var mapper = context.HttpContext.RequestServices.GetRequiredService<IMapper>();
-            resultFromAction.Value = mapper.Map<NoteDetailModel>(resultFromAction.Value);
+            resultFromAction.Value = mapper.Map<IEnumerable<NoteSummaryModel>>(resultFromAction.Value);
 
             await next();
         }

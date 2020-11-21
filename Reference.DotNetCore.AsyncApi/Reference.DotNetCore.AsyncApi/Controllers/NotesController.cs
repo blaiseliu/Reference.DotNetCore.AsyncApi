@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Reference.DotNetCore.AsyncApi.Filters;
 using Reference.DotNetCore.AsyncApi.Repositories;
 
 namespace Reference.DotNetCore.AsyncApi.Controllers
@@ -21,6 +22,7 @@ namespace Reference.DotNetCore.AsyncApi.Controllers
 
         [HttpGet]
         [Route("")]
+        [NotesResultFilter]
         public async Task<IActionResult> Get()
         {
             var entities=await _repository.GetAllAsync();
@@ -28,6 +30,7 @@ namespace Reference.DotNetCore.AsyncApi.Controllers
         }
         [HttpGet]
         [Route("{id}")]
+        [NoteResultFilter]
         public async Task<IActionResult> Get(Guid id)
         {
             var entity= await _repository.FindAsync(id);
