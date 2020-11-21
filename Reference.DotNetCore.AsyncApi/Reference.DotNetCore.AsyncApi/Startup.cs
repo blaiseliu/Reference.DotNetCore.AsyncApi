@@ -19,7 +19,7 @@ namespace Reference.DotNetCore.AsyncApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            var connectionString = Configuration["ConnectionString:NotesDbConnectionString"];
+            var connectionString = Configuration["ConnectionStrings:NotesDbConnectionString"];
             services.AddDbContext<NotesDbContext>(x => x.UseSqlServer(connectionString));
         }
 
