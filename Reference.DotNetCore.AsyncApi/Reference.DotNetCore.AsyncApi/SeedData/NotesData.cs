@@ -56,6 +56,7 @@ namespace Reference.DotNetCore.AsyncApi.SeedData
                 var nowText=now.ToString("yyyyMMddhhmmss");
                 return Notes.Select(x => new Note
                 {
+                    Id=Guid.NewGuid(),
                     Title = $"{nowText}.{x.Substring(0, 10)}", 
                     Content = x, 
                     DateCreated = now, 
